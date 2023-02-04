@@ -1,0 +1,176 @@
+header{
+    display: flex;
+    height: 60px;
+    padding:0;
+    align-items: center;
+    font-size: 0.7em;
+}
+
+/* logout button */
+
+#logoutForm{
+    margin: auto;
+    position:absolute;
+    right: 15px;
+}
+
+#logoutBtn{
+    background-color: white;
+    color: #e85e0d;
+    font-weight: bold;
+    border: 3px solid #e85e0d;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#logoutBtn:hover{
+    cursor: pointer;
+    background-color: #e85e0d;
+    color: white;
+    border: 3px solid white;
+}
+
+/* username holder */
+
+#usernameHolder{
+    margin-left: 15px;
+    font-size: 1.4em;
+}
+
+/* user balance data */
+
+#userBalanceHolder{
+    position:absolute;
+    right: 100px;
+    font-size: 1.4em;
+}
+
+/* dropdown menus */
+
+.dropdownMenu {
+    font-weight: bold;
+    display: inline-block;
+}
+  
+  .dropdown-btn {
+    font-size: 1.3em;
+    font-weight: bold;
+    background-color:#e85e0d;
+    color: white;
+    padding: 8px 20px;
+    margin: 0;
+    border: none;
+    border-right: 3px solid white;
+  }
+
+  .dropdown-btn:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #222327
+  }
+  
+  .dropdown-content {
+    opacity:0.8;
+    display: none;
+    position: absolute;
+    background-color:#e85e0d;
+    color: white;
+    z-index: 1;
+    border-bottom: 3px solid white;
+    border-right: 3px solid white;
+  }
+  
+  .dropdown-content a {
+    color: white;
+    font-size: 1.3em;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover{
+    background-color: white;
+    color: #222327;
+  }
+  
+  .dropdownMenu:hover .dropdown-content {
+    display: block;
+    cursor: pointer;
+  }
+
+  /* dropdown menus for menu button */
+
+  #userMenu.dropdownMenu, #adminMenu.dropdownMenu{
+    width:140px;
+    position: relative;
+  }
+
+  #userMenu .dropdown-btn, #adminMenu .dropdown-btn{
+    width: 100%;
+    height: 100%;
+  }
+
+  #userMenu .dropdown-content, #adminMenu .dropdown-content{
+    width: 98%;
+  }
+
+  /* dropdown menus for sort button */
+
+  #sortOptions.dropdownMenu{
+    width: 120px;
+  }
+
+  #sortOptions .dropdown-btn{
+    margin: 0;
+    padding: 2px 2px;
+    font-size: 1em;
+    width: 100%;
+    border: 3px solid white;
+  }
+
+  #sortOptions .dropdown-content{
+    font-size: 1em;
+    width: 114px;
+    border: 3px solid white;
+  }
+
+  #sortOptions a{
+    font-size: 1em;
+  }
+
+  /* header text for main section */
+
+  #mainSectHeaderText{
+    text-align: center;
+    margin: 0;
+    margin-right: 10px;
+  }
+
+  /* header block with text and sort button */
+
+  #mainSectHeaderBlock{
+    margin-top: 70px;
+    padding:0;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* submit button */
+
+  #submitBtn{
+    float: right;
+    background-color: white;
+    color: #e85e0d;
+    border: 3px solid #e85e0d;
+    border-radius: 15px;
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#submitBtn:hover{
+    cursor: pointer;
+    background-color: #e85e0d;
+    color: white;
+    border: 3px solid white;
+}

@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
+    <link href="views/styles/basic-styles.css" rel="stylesheet">
+    <link href="views/styles/menu-styles.css" rel="stylesheet">
+    <link href="views/styles/admin-menu-styles.css" rel="stylesheet">
+    <link href="views/styles/register-styles.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="dropdownMenu" id="adminMenu">
+            <button class="dropdown-btn">Admin menu</button>
+            <div class="dropdown-content">
+              <a href="/">View all tariffes</a>
+              <a href="#">View and edit users</a>
+              <a href="#">View and edit packages</a>
+              <a href="#">View my active tariffes</a>
+              <a href="#">Top-up my balance</a>
+            </div>
+        </div>
+        <span id="usernameHolder">Welcome, <%= username %>!</span>
+        <span id="userBalanceHolder">Balance: <%= balance %></span>
+        <form action="/logout?_method=DELETE" method="POST" id="logoutForm">
+            <button id="logoutBtn" type="submit">log out</button>
+        </form>
+    </header>
+    <section class="mainSect">
+        <h2 id="mainSectText">Register user</h2>
+        <div id="registerBlock">
+            <form id="registerUserForm" method="post" action="/register-user">
+                <label for="usernameInput" id="usernameInputLabel">Enter user's name and surname:</label>
+                <input type="text" id="usernameInput" name="username" required>
+                <br>
+                <label for="emailInput" id="emailInputLabel">Enter user's email:</label>
+                <input type="email" id="emailInput" name="email" required>
+                <br>
+                <label for="passwordInput" id="passwordInputLabel">Enter user's password:</label>
+                <input type="password" id="passwordInput" name="password" required>
+                <br>
+                <label for="passwordConfirmInput" id="passwordConfirmInputLabel">Confirm user's password:</label>
+                <input type="password" id="passwordConfirmInput" name="passwordConfirm" required>
+                <br>
+                <label for="adminRightsOptions" id="adminRightsOptionsLabel">Provide admin rights:</label>
+                <select id="adminRightsOptions" name="admin" required>
+                    <option value="no">no</option>
+                    <option value="yes">yes</option>
+                </select>
+                <br>
+                <button type="submit" id="submitBtn">Register user</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <span>&#169 2023 IP Dream, Inc.</span>
+    </footer>
+
+     <!--template for blocks with tariffes' info-->
+     <template>
+        <div class="tariffBlock">
+            <h3 class="tariffType">{{type}}</h3>
+            <h2 class="tariffName">{{name}}</h2>
+            <p class="tariffDescription">{{description}}</p>
+            <span class="tariffPrice">{{price}}</span>
+            <button>Buy</button>
+        </div>
+    </template>
+</body>
+</html>

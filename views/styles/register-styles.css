@@ -1,0 +1,31 @@
+.mainSect{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    flex: 1;
+}
+
+#mainSectText{
+    margin: 15px auto;
+    margin-top: 70px;
+}
+
+#registerUserForm{
+    border: 3px solid #e85e0d; 
+    border-radius: 10px;
+    padding: 15px; 
+    height:fit-content;
+    width: fit-content;
+    margin: 20px auto;
+}
+
+#registerUserForm input, select{
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+#submitBtn{
+    float:none;
+}

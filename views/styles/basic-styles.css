@@ -30,3 +30,7 @@ footer{
     justify-content: center;
     border-top: 3px solid white;
 }
+
+.error-message{
+    color:red;
+}

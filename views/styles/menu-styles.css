@@ -122,7 +122,7 @@ header{
 
   #sortOptions .dropdown-btn{
     margin: 0;
-    padding: 2px 2px;
+    padding: 2px;
     font-size: 1em;
     width: 100%;
     border: 3px solid white;
@@ -138,12 +138,28 @@ header{
     font-size: 1em;
   }
 
+  /* download tariffes button */
+
+  #downloadTariffesBtn{
+    padding: 2px 8px;
+    font-size: 1em;
+    background-color: #e85e0d;
+    color: white;
+    border: 3px solid white;
+    font-weight: bold;
+  }
+
+  #downloadTariffesBtn:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #222327;
+  }
+
   /* header text for main section */
 
   #mainSectHeaderText{
     text-align: center;
-    margin: 0;
-    margin-right: 10px;
+    margin: 0 10px;
   }
 
   /* header block with text and sort button */

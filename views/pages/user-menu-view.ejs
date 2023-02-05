@@ -20,8 +20,8 @@
               <a href="#">Top-up my balance</a>
             </div>
         </div>
-        <span id="usernameHolder">Welcome, <%= username %>!</span>
-        <span id="userBalanceHolder">Balance: <%= balance %></span>
+        <span id="usernameHolder">Welcome, <%= user.username %>!</span>
+        <span id="userBalanceHolder">Balance: <%= user.balance %></span>
         <form action="/logout?_method=DELETE" method="POST" id="logoutForm">
             <button id="logoutBtn" type="submit">log out</button>
         </form>

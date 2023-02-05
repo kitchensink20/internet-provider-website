@@ -10,12 +10,14 @@
     <link href="views/styles/basic-styles.css" rel="stylesheet">
     <link href="views/styles/menu-styles.css" rel="stylesheet">
     <link href="views/styles/admin-menu-styles.css" rel="stylesheet">
+    <link href="views/styles/create-styles.css" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="dropdownMenu" id="adminMenu">
             <button class="dropdown-btn">Admin menu</button>
             <div class="dropdown-content">
+              <a href="/">View all tariffes</a>
               <a href="#">View and edit users</a>
               <a href="#">View and edit packages</a>
               <a href="#">View my active tariffes</a>
@@ -29,34 +31,30 @@
         </form>
     </header>
     <section class="mainSect">
-        <div id="mainSectHeaderBlock">
-            <form id="downloadForm">
-                <button type="submit" id="downloadTariffesBtn">Download tariffes</button>
-            </form>
-            <h2 id="mainSectHeaderText">Choose the most right tariff for you!</h2>
-            <div class="dropdownMenu" id="sortOptions">
-                <button class="dropdown-btn">Sort</button>
-                <div class="dropdown-content">
-                  <a href="#">by name (A-Z)</a>
-                  <a href="#">by name (Z-A)</a>
-                  <a href="#">by price</a>
-                </div>
+        <h2 id="mainSectText">Create tariff</h2>
+        <form id="createTariffForm" class="createForm" method="post" action="/create-tariff">
+            <label for="tariffTypesOptions" id="tariffTypesOptionsLabel">Choose the tariff's type:</label>
+            <select id="tariffTypesOptions" name="type" required>
+                <option value="Internet">Internet</option>
+                <option value="TV">TV</option>
+                <option value="Mobile connection">Mobile connection</option>
+            </select>
+            <br>
+            <label for="nameInput" id="nameInputLabel">Enter the tariff's name:</label>
+            <input type="text" id="nameInput" name="name" required>
+            <br>
+            <div id="descriptionBlock">
+                <label for="descriptionInput" id="descriptionInputLabel">Describe the tariff:</label>
+                <textarea id="descriptionInput" name="description" rows="5" required></textarea>
             </div>
-        </div>
+            <label for="priceInput" id="priceInputLabel">Enter the tariff's price:</label>
+            <input type="number" id="priceInput" name="price" min="100" max="1000" value="100" required>
+            <br><br>
+            <button type="submit" id="submitBtn">Create tariff</button>
+            </form>
     </section>
     <footer>
         <span>&#169 2023 IP Dream, Inc.</span>
     </footer>
-
-     <!--template for blocks with tariffes' info-->
-     <template>
-        <div class="tariffBlock">
-            <h3 class="tariffType">{{type}}</h3>
-            <h2 class="tariffName">{{name}}</h2>
-            <p class="tariffDescription">{{description}}</p>
-            <span class="tariffPrice">{{price}}</span>
-            <button>Buy</button>
-        </div>
-    </template>
 </body>
 </html>

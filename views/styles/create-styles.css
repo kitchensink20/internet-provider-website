@@ -11,21 +11,31 @@
     margin-top: 70px;
 }
 
-#registerUserForm{
+.createForm{
     border: 3px solid #e85e0d; 
     border-radius: 10px;
     padding: 15px; 
     height:fit-content;
     width: fit-content;
     margin: 20px auto;
+    text-align: right;
 }
 
-#registerUserForm input, select{
+.createForm textarea, input, select{
     padding: 10px;
     margin: 5px;
     border-radius: 10px;
 }
 
+textarea{
+    width: 44%;
+    resize: none;
+} 
+
 #submitBtn{
     float:none;
+}
+
+select:hover{
+    cursor:pointer;
 }

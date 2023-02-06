@@ -8,7 +8,7 @@ const passport = require('passport');
 const users = require('../models/users');
 const tariffes = require('../models/tariffes');
 const { isAdmin } = require('./authorization-controller');
-
+const fileManager = require('./tariffes-file-manager');
 
 const saltRounds = 10; // the number of iterations the algorithm to hash password
 
@@ -67,6 +67,7 @@ router.post('/create-tariff', async (req, res) => {
         };
         tariffes.createTariff(tariff);
         res.redirect('/');
+        fileManager.updateTariffesFile();
     } catch {
         res.redirect('/create-tariff');
     }
@@ -90,6 +91,22 @@ router.delete('/logout', (req, res) => {
         res.redirect('/login');
     });
 })
+
+/* request to /tariffes-data */
+
+router.get('/tariffes-data', function(req, res){
+    tariffes.getAllTariffes().then(allTariffes => {
+        res.json(allTariffes);
+    }).catch(error => {
+        console.error('Error: ', error);
+    });
+});
+
+/* request to /download-tariffes */
+
+router.get('/download-tariffes', (req, res) => {
+    fileManager.downloadTariffes(res);
+});
 
 module.exports = router;
 

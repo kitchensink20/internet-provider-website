@@ -27,7 +27,7 @@
     border-radius: 10px;
 }
 
-textarea{
+textarea, #nameInput{
     width: 44%;
     resize: none;
 } 

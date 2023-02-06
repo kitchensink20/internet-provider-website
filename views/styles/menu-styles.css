@@ -1,17 +1,18 @@
 header{
     display: flex;
-    height: 60px;
-    padding:0;
+    height:auto;
+    padding: 0;
     align-items: center;
+
     font-size: 0.7em;
 }
 
 /* logout button */
 
 #logoutForm{
-    margin: auto;
     position:absolute;
     right: 15px;
+    margin: auto;
 }
 
 #logoutBtn{
@@ -41,7 +42,7 @@ header{
 
 #userBalanceHolder{
     position:absolute;
-    right: 100px;
+    right: 90px;
     font-size: 1.4em;
 }
 
@@ -57,7 +58,7 @@ header{
     font-weight: bold;
     background-color:#e85e0d;
     color: white;
-    padding: 8px 20px;
+    padding: 20px;
     margin: 0;
     border: none;
     border-right: 3px solid white;
@@ -180,6 +181,7 @@ header{
     border: 3px solid #e85e0d;
     border-radius: 15px;
     padding: 10px;
+    margin: 10px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -189,4 +191,70 @@ header{
     background-color: #e85e0d;
     color: white;
     border: 3px solid white;
+}
+
+/* tariffes display elements */
+
+#tariffesDisplayBlock{
+  flex: 1;
+  margin: 60px auto;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 280px;
+  grid-gap: 50px;
+}
+
+.tariffBlock{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  height: 280px;
+}
+
+.tariffBlock:hover{
+  box-shadow: 6px 2px 3px #000;
+}
+
+.tariffBlockContent{
+  position: relative;
+  border: 3px solid #e85e0d;
+  border-top: 0;
+  padding: 10px;
+  flex: 1;
+}
+
+.tariffBlockHeader{
+  background-color: #e85e0d;
+  border: 3px solid white;
+  margin:0;
+  padding: 10px;
+}
+
+.tariffBlock h3{
+  margin-top:0;
+}
+
+.buyBlock{
+  height:fit-content;
+  position: absolute; 
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.buyBtn{
+  background-color: #e85e0d;
+  color: white;
+  border: 3px solid white;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.buyBtn:hover{
+  cursor: pointer;
+  background-color: white;
+  color: #e85e0d;
+  border: 3px solid #e85e0d; 
 }

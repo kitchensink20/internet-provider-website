@@ -51,4 +51,9 @@ function findUser(query) {
     return requestedUser;
 }
 
-module.exports = { createUser, findUser }
+function updateUser(id, update) {
+    let updatedUser = User.findByIdAndUpdate(id, update);
+    return updatedUser;
+}
+
+module.exports = { createUser, findUser, updateUser }

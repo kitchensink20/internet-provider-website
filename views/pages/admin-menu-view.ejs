@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
     <link href="views/styles/basic-styles.css" rel="stylesheet">
     <link href="views/styles/menu-styles.css" rel="stylesheet">
-    <link href="views/styles/admin-menu-styles.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -30,19 +29,20 @@
     </header>
     <section class="mainSect">
         <div id="mainSectHeaderBlock">
-            <form id="downloadForm">
-                <button type="submit" id="downloadTariffesBtn">Download tariffes</button>
+            <form id="downloadForm" action="download-tariffes" method="get">
+                <button type="submit" id="downloadTariffesBtn" type="submit">Download tariffes</button>
             </form>
             <h2 id="mainSectHeaderText">Choose the most right tariff for you!</h2>
             <div class="dropdownMenu" id="sortOptions">
                 <button class="dropdown-btn">Sort</button>
                 <div class="dropdown-content">
-                  <a href="#">by name (A-Z)</a>
-                  <a href="#">by name (Z-A)</a>
-                  <a href="#">by price</a>
+                  <a id="sortByNameBtn">by name (A-Z)</a>
+                  <a id="sortByNameDescBtn">by name (Z-A)</a>
+                  <a id="sortByPriceBtn">by price</a>
                 </div>
             </div>
         </div>
+        <div id="tariffesDisplayBlock"></div>
     </section>
     <footer>
         <span>&#169 2023 IP Dream, Inc.</span>
@@ -51,12 +51,20 @@
      <!--template for blocks with tariffes' info-->
      <template>
         <div class="tariffBlock">
-            <h3 class="tariffType">{{type}}</h3>
-            <h2 class="tariffName">{{name}}</h2>
-            <p class="tariffDescription">{{description}}</p>
-            <span class="tariffPrice">{{price}}</span>
-            <button>Buy</button>
+            <div class="tariffBlockHeader">
+                <h3 class="tariffType">{{type}}</h3>
+            </div>
+            <div class="tariffBlockContent">
+                <h3 class="tariffName">{{name}}</h3>
+                <p class="tariffDescription">{{description}}</p>
+                <div class="buyBlock">
+                    <button class="buyBtn">Buy</button>
+                    <span class="tariffPrice">{{price}}</span>
+                </div>
+            </div>
         </div>
     </template>
+    <script src="../../controllers/tariffes-manager.js"></script>
+    <script src="../../controllers/menu-controller.js"></script>
 </body>
 </html>

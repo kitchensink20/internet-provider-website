@@ -1,0 +1,42 @@
+______________________________________
+name:  Mega
+type:  Internet
+description:
+Get 20GB of Internet for 4 weeks!
+price:  250
+______________________________________
+name:  Mega+
+type:  Internet
+description:
+Get 35GB of Internet for 4 weeks!
+price:  320
+______________________________________
+name:  Mega++
+type:  Internet
+description:
+Get 50GB of Internet for 4 weeks!
+price:  380
+______________________________________
+name:  Phone
+type:  Mobile connection
+description:
+Get 100 minutes for calls for 4 weeks!
+price:  200
+______________________________________
+name:  Phone++
+type:  Mobile connection
+description:
+Get 200 minutes for calls for 4 weeks!
+price:  300
+______________________________________
+name:  Analog
+type:  TV
+description:
+Get up to 100 channels for 4 weeks! Enjoy up to 40 channels in HD-quality.
+price:  100
+______________________________________
+name:  Analog+
+type:  TV
+description:
+Get up to 200 channelsfor 4 weeks! Enjoy up to 40 channels in HD-quality.
+price:  150

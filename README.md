@@ -9,5 +9,6 @@
 * express-session - enables the creation of server-side sessions
 * method-override - used to override the HTTP method used in an HTTP request
 * mongoose - MongoDB object modeling tool designed to work in asynchronous environment
+* fs - allows to work with file sytem
 * (optionally) nodemon - tool that helps automatically restart server
 

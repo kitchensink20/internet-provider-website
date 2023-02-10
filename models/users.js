@@ -1,5 +1,6 @@
 const { default: mongoose } = require('mongoose');
 const moongoose = require('mongoose');
+const tariffes = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -28,7 +29,7 @@ const userSchema = new mongoose.Schema({
         default: true
     },
     active_services: {
-        type: [moongoose.SchemaTypes.ObjectId],
+        type: [],
         default: []
     }
 });
@@ -51,9 +52,13 @@ function findUser(query) {
     return requestedUser;
 }
 
-function updateUser(id, update) {
-    let updatedUser = User.findByIdAndUpdate(id, update);
-    return updatedUser;
+async function addTariffToActives(userId, tariff){
+    let result = await User.findByIdAndUpdate(userId, 
+        { $push: { active_services: tariff._Id },
+        $inc: { balance: -tariff.price }},
+        { new: true }).exec();
+    console.log(result);
+    return result;
 }
 
-module.exports = { createUser, findUser, updateUser }
+module.exports = { createUser, findUser, addTariffToActives }

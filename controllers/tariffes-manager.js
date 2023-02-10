@@ -20,11 +20,22 @@ class TariffesManager{
             document.querySelectorAll(".tariffDescription")[i].textContent = this.tariffes[i].description;
             document.querySelectorAll(".tariffPrice")[i].textContent = this.tariffes[i].price + '₴';
 
-            document.querySelectorAll(".buyBtn")[i].addEventListener("submit", () => {
+            document.querySelectorAll(".buyBtn")[i].addEventListener("click", () => {
                 let xhr = new XMLHttpRequest();
 
-                xhr.open("POST", "/buy-tariff", true);
-                 //xhr.setRequesr
+                xhr.open("POST", "/buy/tariff", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onreadystatechange = function () {
+                    if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200)
+                        console.log("Data")
+                }
+
+                const choosenTariff = this.tariffes[i];
+
+                console.log(choosenTariff);
+
+                xhr.send(JSON.stringify(choosenTariff));
             });
         }
     }

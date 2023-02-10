@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
+    <link href="views/styles/basic-styles.css" rel="stylesheet">
+    <link href="views/styles/menu-styles.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="dropdownMenu" id="adminMenu">
+            <button class="dropdown-btn">Admin menu</button>
+            <div class="dropdown-content">
+              <a href="/admin-menu">View all tariffes</a>
+              <a href="/admin-menu/tariffes-view">View and add tariffes</a>
+              <a href="/admin-menu/my-active-tariffes">View my active tariffes</a>
+              <a href="/admin-menu/top-up-balance">Top-up my balance</a>
+            </div>
+        </div>
+        <span id="usernameHolder">Welcome, <%= user.username %>!</span>
+        <span id="userBalanceHolder">Balance: <%= user.balance %></span>
+        <form action="/logout?_method=DELETE" method="POST" id="logoutForm">
+            <button id="logoutBtn" type="submit">log out</button>
+        </form>
+    </header>
+    <section class="mainSect">
+        <div id="mainSectHeaderBlock">
+            <h2 id="mainSectHeaderText">List of users</h2>
+        </div>
+        
+    </section>
+    <footer>
+        <span>&#169 2023 IP Dream, Inc.</span>
+    </footer>
+</body>
+</html>

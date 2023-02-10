@@ -1,42 +1,48 @@
-______________________________________
+_____________________________________________
 name:  Mega
 type:  Internet
 description:
 Get 20GB of Internet for 4 weeks!
-price:  250
-______________________________________
+price:  250₴
+_____________________________________________
 name:  Mega+
 type:  Internet
 description:
 Get 35GB of Internet for 4 weeks!
-price:  320
-______________________________________
+price:  320₴
+_____________________________________________
 name:  Mega++
 type:  Internet
 description:
 Get 50GB of Internet for 4 weeks!
-price:  380
-______________________________________
+price:  380₴
+_____________________________________________
 name:  Phone
 type:  Mobile connection
 description:
 Get 100 minutes for calls for 4 weeks!
-price:  200
-______________________________________
+price:  200₴
+_____________________________________________
 name:  Phone++
 type:  Mobile connection
 description:
 Get 200 minutes for calls for 4 weeks!
-price:  300
-______________________________________
+price:  300₴
+_____________________________________________
 name:  Analog
 type:  TV
 description:
 Get up to 100 channels for 4 weeks! Enjoy up to 40 channels in HD-quality.
-price:  100
-______________________________________
+price:  100₴
+_____________________________________________
 name:  Analog+
 type:  TV
 description:
 Get up to 200 channelsfor 4 weeks! Enjoy up to 40 channels in HD-quality.
-price:  150
+price:  150₴
+_____________________________________________
+name:  gfgfg
+type:  Internet
+description:
+gdfgd
+price:  100₴

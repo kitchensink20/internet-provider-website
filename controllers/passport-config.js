@@ -30,9 +30,14 @@ function initialize(passport){
             active: user.active,
             active_services: user.active_services
         }
+        console.log('User ' + user.username + ' has been serialised.');
         return done(null, userData); 
     }); // specifies how a user object should be stored in the session, done func with id as a second arg tells 'passport' to store user data exept for password
-    passport.deserializeUser((user, done) => { return done(null, user); }); // specifies how the user object should be retrieved from the session, it takes user's id 
+    passport.deserializeUser((userData, done) => { 
+        users.findUser({ _id: userData.id }).then(user => 
+           { console.log('User ' + user.username + ' has been deserialised.');
+            return done(null, user); }
+    )}); // specifies how the user object should be retrieved from the session, it takes user's id 
 }
 
 module.exports = initialize;

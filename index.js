@@ -6,7 +6,8 @@ const methodOverride = require('method-override');
 const db = require('./models/db-connection');
 const bodyParser = require('body-parser');
 const { checkAuthenticated } = require('./controllers/authentication-checker');
-const initializePassport = require('./controllers/passport-config');
+const initializePassport = require('./configurations/passport-config');
+const sessionStore = require('./models/sessions');
 
 //routers
 const loginRouter = require('./routes/login');
@@ -32,7 +33,8 @@ db.once('open', () => {
     app.use(session({
     secret: 'sjnlrlg13jn', // to sign the session ID cookie
     resave: false, // to resave session if it wasn't modified
-    saveUninitialized: false // to save an unitialized session
+    saveUninitialized: false, // to save an unitialized session
+    store: sessionStore
     })); // creates a session store on the server, allows to maintain state between HTTP requests
     app.use(passport.initialize()); // to initialize passport and set up necessary data structures for aithentication
     app.use(passport.session()); // to restore user authentication info from a previously established session

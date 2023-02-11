@@ -5,7 +5,13 @@ const users = require('../models/users');
 buyRouter.post('/tariff', async (req, res) => {
     try{
         await users.addTariffToActives(req.session.passport.user.id, req.body);
-      //  console.log("User " + req.session.passport.user.username + " updated successfully!");
+        req.session.passport.user.balance -= req.body.price;
+        req.session.save((error) => {
+            if (error) 
+                return res.status(500).send(error);
+            
+            res.status(200);
+        });
     } catch (error) {
         console.error(error);
     }

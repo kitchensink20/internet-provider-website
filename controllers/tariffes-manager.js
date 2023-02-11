@@ -21,21 +21,24 @@ class TariffesManager{
             document.querySelectorAll(".tariffPrice")[i].textContent = this.tariffes[i].price + '₴';
 
             document.querySelectorAll(".buyBtn")[i].addEventListener("click", () => {
-                let xhr = new XMLHttpRequest();
+                let xhr = new XMLHttpRequest(); // creating the instance of XMLHttpRequest object
 
-                xhr.open("POST", "/buy/tariff", true);
-                xhr.setRequestHeader("Content-Type", "application/json");
+                // method open initializes request, takes 3 arguments
+                xhr.open("POST", // HTTP method
+                        "/buy/tariff",  // URL that the request will be sent to
+                        true); // the request should be made asynchronously or not
+                xhr.setRequestHeader("Content-Type", "application/json"); // tells the server that the request body will contain JSON data
 
-                xhr.onreadystatechange = function () {
-                    if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200)
+                // event handler that will be called whenever the readyState* of XHR object changes
+                xhr.onreadystatechange = function () { 
+                    if(xhr.readyState === 4 && xhr.status === 200) // request was completed && request was successfull
                         console.log("Data")
                 }
 
                 const choosenTariff = this.tariffes[i];
 
-                console.log(choosenTariff);
-
-                xhr.send(JSON.stringify(choosenTariff));
+                // send method is used to send the request to the server
+                xhr.send(JSON.stringify(choosenTariff)); // the argument is a stringified version of the 'choosenTariff' object, which will be sent in the request body as JSON 
             });
         }
     }
@@ -59,3 +62,12 @@ class TariffesManager{
         this.displayTariffes();
     }
 }
+
+// * ReadyState property holds the status if the XMLHttpRequest.
+// 0: request not initialized = XMLHttpRequest.UNSENT: client has been created, open() not called yet;
+// 1: server connection extablished = XMLHttpRequest.OPENED: open() has been called;
+// 2: request received = XMLHttpRequest.HEADERS_RECEIVED:  send() has been called, and headers and status are available
+// 3: processing request = XMLHttpRequest.LOADING: downloading, responseText holds partial data
+// 4: request finished and response is ready = XMLHttpRequest.DONE: the operation is complete
+// XMLHttpRequest.readyState property returns the state an XMLHttpRequest client is in. 
+// So basically it is the list of all states in which an XHR client excists.

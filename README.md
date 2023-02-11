@@ -11,5 +11,6 @@
 * mongoose - MongoDB object modeling tool designed to work in asynchronous environment
 * body-parser - parses incoming request bodies in a middleware before your handlers, avalaible uder req.body property
 * fs - allows to work with file sytem
+* connect-mongo - for mongoDB-backend session storage
 * (optionally) nodemon - tool that helps automatically restart server
 

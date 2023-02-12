@@ -1,12 +1,13 @@
 const express = require('express'); 
 const passport = require('passport');
+const path = require('path');
 const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const db = require('./models/db-connection');
 const bodyParser = require('body-parser');
 const { checkAuthenticated } = require('./controllers/authentication-checker');
-const initializePassport = require('./configurations/passport-config');
+const initializePassport = require('./configs/passport-config');
 const sessionStore = require('./models/sessions');
 
 //routers
@@ -27,7 +28,7 @@ db.once('open', () => {
     initializePassport(passport);
 
     app.use(bodyParser.json()); // to parse the request body as JSON
-    app.use(express.static(__dirname)); // middleware to use static files as well, the parameter specifies the directory to take files from
+    app.use(express.static(path.join(__dirname, 'public'))); // middleware to use static files as well, the parameter specifies the directory to take files from
     app.use(express.urlencoded({ extended: false })); // to parse the request bodies as URL-encoded data, the option means that the data will be parsed using the querystring library
     app.use(flash()); // to store messages in the session thet are intended to be displayedd on the next request
     app.use(session({

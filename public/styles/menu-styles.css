@@ -243,16 +243,17 @@ header{
   align-items: center;
 }
 
-.buyBtn{
+.tariffCntrlBtn{
   background-color: #e85e0d;
   color: white;
   border: 3px solid white;
   margin-right: 10px;
   padding: 10px;
   border-radius: 10px;
+  font-weight: bold;
 }
 
-.buyBtn:hover{
+.tariffCntrlBtn:hover{
   cursor: pointer;
   background-color: white;
   color: #e85e0d;

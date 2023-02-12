@@ -6,6 +6,10 @@
     flex: 1;
 }
 
+.mainSect#topUpSect{
+    padding-top: 150px;
+}
+
 #mainSectText{
     margin: 15px auto;
     margin-top: 70px;

@@ -20,7 +20,7 @@ const tariffSchema = new moongoose.Schema({
 });
 
 const Tariff = moongoose.model('Tariff', tariffSchema, 'tariffes');
-
+    
 async function createTariff(tariff) {
     try {
         const newTariff = new Tariff(tariff);

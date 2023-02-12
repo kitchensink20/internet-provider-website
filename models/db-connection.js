@@ -43,4 +43,4 @@ module.exports = db;
 // -db.on('fullsetup', callback) - when all models have been registered and connection to the db in open
 // -db.on('reconnected', callback) - when the db connection is successfully reconnected
 // ****The topology layer is part of MongoDB driver that abstracts the underlying network architecture and
-// communiction with the MongoDB server.
+// communication with the MongoDB server.

@@ -54,11 +54,24 @@ function findUser(query) {
 
 async function addTariffToActives(userId, tariff){
     let result = await User.findByIdAndUpdate(userId, 
-        { $push: { active_services: tariff._Id },
+        { $push: { active_services: tariff._id },
         $inc: { balance: -tariff.price }},
         { new: true }).exec();
-    console.log(result);
     return result;
 }
 
-module.exports = { createUser, findUser, addTariffToActives }
+async function deleteActiveTariff(userId, tariff){
+    let result = await User.findByIdAndUpdate(userId, 
+        { $pull: { active_services: tariff._id }},
+        { new: true }).exec();
+    return result;
+}
+
+async function topUpUserBalance(userId, moneyAmount){
+    let result = await User.findByIdAndUpdate(userId, 
+        { $inc: { balance: +moneyAmount }},
+        { new: true }).exec();
+    return result;
+}
+
+module.exports = { createUser, findUser, addTariffToActives, topUpUserBalance, deleteActiveTariff }

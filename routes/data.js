@@ -10,4 +10,8 @@ dataRouter.get('/tariffes', function(req, res){
     });
 });
 
+dataRouter.get('/user', function(req, res){
+    res.json(req.session.passport.user);
+});
+
 module.exports = dataRouter;

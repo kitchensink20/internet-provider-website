@@ -7,8 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
-    <link href="views/styles/basic-styles.css" rel="stylesheet">
-    <link href="views/styles/menu-styles.css" rel="stylesheet">
+    <link href="/styles/basic-styles.css" rel="stylesheet">
+    <link href="/styles/menu-styles.css" rel="stylesheet">
+    <link href="/styles/create-styles.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -27,11 +28,13 @@
             <button id="logoutBtn" type="submit">log out</button>
         </form>
     </header>
-    <section class="mainSect">
-        <div id="mainSectHeaderBlock">
+    <section class="mainSect" id="topUpSect"> 
             <h2 id="mainSectHeaderText">Top-up my balance</h2>
-        </div>
-        
+            <form id="topUpBalanceForm" class="createForm" action="/top-up-balance?_method=PUT" method="PUT">
+                <label for="payInput" id="payInputLabel">Enter the amount of money to put:</label>
+                <input type="number" id="payInput" name="price" min="50" max="1000" value="50" required>
+                <button type="submit" id="submitBtn">Pay</button>
+            </form>
     </section>
     <footer>
         <span>&#169 2023 IP Dream, Inc.</span>

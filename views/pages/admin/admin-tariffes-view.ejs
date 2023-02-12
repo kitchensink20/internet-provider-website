@@ -7,18 +7,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
-    <link href="views/styles/basic-styles.css" rel="stylesheet">
-    <link href="views/styles/menu-styles.css" rel="stylesheet">
+    <link href="/styles/basic-styles.css" rel="stylesheet">
+    <link href="/styles/menu-styles.css" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="dropdownMenu" id="adminMenu">
             <button class="dropdown-btn">Admin menu</button>
             <div class="dropdown-content">
-              <a href="/">View all packages</a>
-              <a href="/users-admin-view">View and add users</a>
-              <a href="/active-tariffes">View my active tariffes</a>
-              <a href="/top-up-balnce">Top-up my balance</a>
+              <a href="/admin-menu">View all tariffes</a>
+              <a href="/admin-menu/tariffes-view">View and add users</a>
+              <a href="/admin-menu/my-active-tariffes">View my active tariffes</a>
+              <a href="/admin-menu/top-up-balance">Top-up my balance</a>
             </div>
         </div>
         <span id="usernameHolder">Welcome, <%= user.username %>!</span>

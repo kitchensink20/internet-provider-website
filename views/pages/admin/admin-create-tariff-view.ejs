@@ -7,21 +7,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
-    <link href="views/styles/basic-styles.css" rel="stylesheet">
-    <link href="views/styles/menu-styles.css" rel="stylesheet">
-    <link href="views/styles/admin-menu-styles.css" rel="stylesheet" type="text/css">
-    <link href="views/styles/create-styles.css" rel="stylesheet" type="text/css">
+    <link href="/styles/basic-styles.css" rel="stylesheet">
+    <link href="/styles/menu-styles.css" rel="stylesheet">
+    <link href="/styles/create-styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <header>
         <div class="dropdownMenu" id="adminMenu">
             <button class="dropdown-btn">Admin menu</button>
             <div class="dropdown-content">
-              <a href="/">View all tariffes</a>
-              <a href="#">View and edit users</a>
-              <a href="#">View and edit packages</a>
-              <a href="#">View my active tariffes</a>
-              <a href="#">Top-up my balance</a>
+              <a href="/admin-menu">View all tariffes</a>
+              <a href="/admin-menu/users-view">View and edit users</a>
+              <a href="/admin-menu/tariffes-view">View and edit tariffes</a>
+              <a href="/admin-menu/my-active-tariffes">View my active tariffes</a>
+              <a href="/admin-menu/top-up-balance">Top-up my balance</a>
             </div>
         </div>
         <span id="usernameHolder">Welcome, <%= user.username %>!</span>

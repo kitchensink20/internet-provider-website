@@ -16,8 +16,8 @@
         <div class="dropdownMenu" id="userMenu">
             <button class="dropdown-btn">User menu</button>
             <div class="dropdown-content">
-              <a href="#">View all tariffes</a>
-              <a href="#">View my active tariffes</a>
+              <a href="/menu">View all tariffes</a>
+              <a href="/menu/my-active-tariffes">View my active tariffes</a>
             </div>
         </div>
         <span id="usernameHolder">Welcome, <%= user.username %>!</span>
@@ -28,9 +28,9 @@
     </header>
     <section class="mainSect" id="topUpSect"> 
             <h2 id="mainSectHeaderText">Top-up my balance</h2>
-            <form id="topUpBalanceForm" class="createForm" action="/top-up-balance?_method=PUT" method="PUT">
+            <form id="topUpBalanceForm" class="createForm" action="/menu/top-up-balance" method="post">
                 <label for="payInput" id="payInputLabel">Enter the amount of money to put:</label>
-                <input type="number" id="payInput" name="price" min="50" max="1000" value="50" required>
+                <input type="number" id="payInput" name="topUpMoney" min="50" max="1000" value="50" required>
                 <button type="submit" id="submitBtn">Pay</button>
             </form>
     </section>

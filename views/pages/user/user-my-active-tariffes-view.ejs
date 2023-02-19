@@ -15,8 +15,8 @@
         <div class="dropdownMenu" id="userMenu">
             <button class="dropdown-btn">User menu</button>
             <div class="dropdown-content">
-              <a href="/menu/my-active-tariffes">View my active tariffes</a>
-              <a href="/menu/top-up-balance">Top-up my balance</a>
+                <a href="/menu">View all tariffes</a>
+                <a href="/menu/top-up-balance">Top-up my balance</a>
             </div>
         </div>
         <span id="usernameHolder">Welcome, <%= user.username %>!</span>
@@ -27,10 +27,7 @@
     </header>
     <section class="mainSect">
         <div id="mainSectHeaderBlock">
-            <form id="downloadForm" action="download/tariffes" method="get">
-                <button type="submit" id="downloadTariffesBtn" type="submit">Download tariffes</button>
-            </form>
-            <h2 id="mainSectHeaderText">Choose the most right tariff for you!</h2>
+            <h2 id="mainSectHeaderText">Your tariffes:</h2>
             <div class="dropdownMenu" id="sortOptions">
                 <button class="dropdown-btn">Sort</button>
                 <div class="dropdown-content">
@@ -55,14 +52,13 @@
             <div class="tariffBlockContent">
                 <h3 class="tariffName">{{name}}</h3>
                 <p class="tariffDescription">{{description}}</p>
-                <div class="buyBlock">
-                    <button class="buyBtn tariffCntrlBtn">Buy</button>
-                    <span class="tariffPrice">{{price}}</span>
-                </div>
+                <br>
+                <p class="tariffPrice">{{price}}</p>
+                <button class="deactivateBtn tariffCntrlBtn">Deactivate</button>
             </div>
         </div>
     </template>
-    <script src="js/tariffes-manager.js"></script>
-    <script src="js/menu-controller.js"></script>
+    <script src="/js/tariffes-manager.js"></script>
+    <script src="/js/active-tariffes-controller.js"></script>
 </body>
 </html>

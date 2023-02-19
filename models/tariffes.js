@@ -32,9 +32,33 @@ async function createTariff(tariff) {
     }
 }
 
-function  getAllTariffes(){
+async function getTariffById(tariffId){
+    let tariff = await Tariff.findById(tariffId).exec();
+    return tariff;
+}
+
+function getAllTariffes(){
     let tariffesList = Tariff.find({}).exec();
     return tariffesList;
 }
 
-module.exports = { createTariff, getAllTariffes }
+async function updateTariff(id, updatedTariff){
+    try{
+        await Tariff.findByIdAndUpdate(id, { type: updatedTariff.type, name: updatedTariff.name, description: updatedTariff.description, price: updatedTariff.price });
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
+
+async function deleteTariff(tariff){
+    try {
+        await Tariff.findByIdAndDelete(tariff._id);
+    }
+    catch (error) {
+        console.error(error);
+        return error;
+    }
+}
+
+module.exports = { createTariff, getAllTariffes, deleteTariff, getTariffById, updateTariff }

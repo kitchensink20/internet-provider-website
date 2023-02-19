@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
     <link href="/styles/basic-styles.css" rel="stylesheet">
     <link href="/styles/menu-styles.css" rel="stylesheet">
+    <link href="/styles/table-views-styles.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -16,7 +17,7 @@
             <button class="dropdown-btn">Admin menu</button>
             <div class="dropdown-content">
               <a href="/admin-menu">View all tariffes</a>
-              <a href="/admin-menu/tariffes-view">View and add users</a>
+              <a href="/admin-menu/users-view">View and add users</a>
               <a href="/admin-menu/my-active-tariffes">View my active tariffes</a>
               <a href="/admin-menu/top-up-balance">Top-up my balance</a>
             </div>
@@ -28,13 +29,23 @@
         </form>
     </header>
     <section class="mainSect">
-        <div id="mainSectHeaderBlock">
-            <h2 id="mainSectHeaderText">List of tariffes</h2>
+        <h2 id="mainSectHeaderText">List of tariffes</h2>
+        <div class="tableDiv">
+            <table id="tariffesTable">
+                <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </table>
+            <a href="/admin-menu/create-tariff"><button class="addBtn">Add new tariff</button></a>
         </div>
-        
     </section>
     <footer>
         <span>&#169 2023 IP Dream, Inc.</span>
     </footer>
+
+    <script src="/js/tariffes-manager.js"></script>
+    <script src="/js/tariffes-table-script.js"></script>
 </body>
 </html>

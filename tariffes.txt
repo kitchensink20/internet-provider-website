@@ -1,10 +1,4 @@
 _____________________________________________
-name:  Mega
-type:  Internet
-description:
-Get 20GB of Internet for 4 weeks!
-price:  250₴
-_____________________________________________
 name:  Mega+
 type:  Internet
 description:
@@ -32,17 +26,17 @@ _____________________________________________
 name:  Analog
 type:  TV
 description:
-Get up to 100 channels for 4 weeks! Enjoy up to 40 channels in HD-quality.
-price:  100₴
+Get up to 100 channels for 4 weeks! Enjoy up to 30 channels in HD-quality.
+price:  200₴
 _____________________________________________
 name:  Analog+
 type:  TV
 description:
 Get up to 200 channelsfor 4 weeks! Enjoy up to 40 channels in HD-quality.
-price:  150₴
+price:  250₴
 _____________________________________________
-name:  gfgfg
+name:  Mega
 type:  Internet
 description:
-gdfgd
-price:  100₴
+Get 20GB of Internet in 4 weeks!
+price:  250₴

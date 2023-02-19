@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
     <link href="/styles/basic-styles.css" rel="stylesheet" type="text/css">
     <link href="/styles/menu-styles.css" rel="stylesheet" type="text/css">
+    <link href="/styles/table-views-styles.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -31,10 +32,23 @@
         <div id="mainSectHeaderBlock">
             <h2 id="mainSectHeaderText">List of users</h2>
         </div>
-        
+        <div class="tableDiv">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Balance</th>
+                    <th>Admin</th>
+                    <th>Status</th>
+                </tr>
+            </table>
+            <a href="/admin-menu/register-user"><button class="addBtn">Register new user</button></a>
+        </div>
     </section>
     <footer>
         <span>&#169 2023 IP Dream, Inc.</span>
     </footer>
+    <script src="/js/users-manager.js"></script>
+    <script src="/js/users-table-script.js"></script>
 </body>
 </html>

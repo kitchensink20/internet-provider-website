@@ -1,11 +1,11 @@
 const express = require('express');
-const { checkAuthenticated } = require('../controllers/authentication-checker');
-const { isAdmin } = require('../controllers/authorization-controller');
+const { checkAuthenticated, isAdmin } = require('../controllers/middleware-checkers');
 const path = require('path'); 
 const bcrypt = require('bcrypt');
 const users = require('../models/users');
 const tariffes = require('../models/tariffes');
 const adminMenuRouter = express.Router(); 
+const fileManager = require('../controllers/tariffes-file-manager');
 
 const saltRounds = 10; // the number of iterations the algorithm to hash password
 
@@ -24,6 +24,9 @@ adminMenuRouter
         if(req.body.password !== req.body.passwordConfirm) 
             return res.render(path.join(__dirname, '../views/pages/admin/admin-register-view.ejs'), { error: 'Password was not confirmed successfully.', user: req.session.passport.user });
 
+        if(await users.findUser({ email: req.body.email }))
+            return res.render(path.join(__dirname, '../views/pages/admin/admin-register-view.ejs'), { error: 'User with such email already excists.', user: req.session.passport.user });
+
         try{
             const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
             let user = {
@@ -33,7 +36,7 @@ adminMenuRouter
                 admin: req.body.admin == 'yes'? true: false
             };
             users.createUser(user);
-            res.redirect('/');
+            res.redirect('/admin-menu/users-view');
         } catch {
             res.redirect('/register-user');
         }
@@ -42,7 +45,7 @@ adminMenuRouter
 adminMenuRouter
     .route('/create-tariff')
     .get((req, res) => {
-    res.render(path.join(__dirname, '../views/pages/admin/admincreate-tariff-view.ejs'), { user: req.session.passport.user });
+    res.render(path.join(__dirname, '../views/pages/admin/admin-create-tariff-view.ejs'), { user: req.session.passport.user });
     })
     .post(async (req, res) => {
     try {
@@ -52,11 +55,12 @@ adminMenuRouter
             description: req.body.description,
             price: req.body.price
         };
-        tariffes.createTariff(tariff);
-        res.redirect('/');
+        await tariffes.createTariff(tariff);
         fileManager.updateTariffesFile();
+        
+        res.redirect('/admin-menu/tariffes-view');
     } catch {
-        res.redirect('/create-tariff');
+        res.redirect('/admin-menu/create-tariff');
     }
     });
 
@@ -64,6 +68,15 @@ adminMenuRouter
     .route('/top-up-balance')
     .get((req, res) => {
         res.render(path.join(__dirname, '../views/pages/admin/admin-top-up-balance-view.ejs'), { user: req.session.passport.user });
+    })
+    .post(async (req, res) => {
+        let userId = req.session.passport.user.id;
+        let plusMoney = Number(req.body.topUpMoney);
+        await users.topUpUserBalance(userId, plusMoney);
+
+        req.session.passport.user.balance += plusMoney;
+
+        return res.redirect('/');
     });
 
 adminMenuRouter
@@ -88,7 +101,6 @@ adminMenuRouter.put('/my-active-tariffes/:tariffId', async (req, res) => {
     } catch (error) {
         console.error(error);
     }
-
 });
 
 adminMenuRouter.get('/users-view', (req, res) => {
@@ -97,6 +109,41 @@ adminMenuRouter.get('/users-view', (req, res) => {
 
 adminMenuRouter.get('/tariffes-view', (req, res) => {
     res.render(path.join(__dirname, '../views/pages/admin/admin-tariffes-view.ejs'), { user: req.session.passport.user });
-})
+});
+
+adminMenuRouter.delete('/tariffes-view/:tariffId', async (req, res) => {
+    try{
+        const tariff = req.body;
+
+        await tariffes.deleteTariff(tariff);
+        fileManager.updateTariffesFile();
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+adminMenuRouter
+    .route('/tariffes-view/edit-tariff/:tariffId')
+    .get(async (req, res) => {
+        try {
+            let tariffId = req.params.tariffId;
+            let tariff = await tariffes.getTariffById(tariffId);
+            res.render(path.join(__dirname, '../views/pages/admin/admin-edit-tariff-view.ejs'), { user: req.session.passport.user, tariff: tariff });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Internal server error');
+        }
+    }).put(async (req, res) => {
+        try{
+            let tariffId = req.params.tariffId;
+            let updatedTariff = req.body;
+            await tariffes.updateTariff(tariffId, updatedTariff);
+            fileManager.updateTariffesFile();
+            res.redirect('/admin-menu/tariffes-view');
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Internal server error');
+        }
+    });
 
 module.exports = adminMenuRouter;

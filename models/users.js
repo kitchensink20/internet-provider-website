@@ -1,6 +1,5 @@
 const { default: mongoose } = require('mongoose');
 const moongoose = require('mongoose');
-const tariffes = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -29,7 +28,7 @@ const userSchema = new mongoose.Schema({
         default: true
     },
     active_services: {
-        type: [],
+        type: [moongoose.SchemaTypes.ObjectId],
         default: []
     }
 });
@@ -74,4 +73,9 @@ async function topUpUserBalance(userId, moneyAmount){
     return result;
 }
 
-module.exports = { createUser, findUser, addTariffToActives, topUpUserBalance, deleteActiveTariff }
+async function getAllUsers(){
+    let allUsers = await User.find({});
+    return allUsers; 
+}
+
+module.exports = { createUser, findUser, addTariffToActives, topUpUserBalance, deleteActiveTariff, getAllUsers }

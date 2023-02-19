@@ -4,6 +4,7 @@ class TariffesManager{
 
     constructor(tariffes){
         this.tariffes = tariffes;
+        this.tariffes.sort((a, b) => (a.type > b.type) ? 1 : ((b.type > a.type) ? -1 : 0));
     }
 
     //--------methods-----------------------------------
@@ -25,6 +26,10 @@ class TariffesManager{
                     .then((response) => response.json())
                     .then((data) => {
                         this.user = data;
+                        if(this.user.balance < this.tariffes[i].price){
+                            alert('You do not need enough money on your balance.');
+                            return;
+                        }
 
                         let hasThisTariffType = false;
                         for(let j = 0; j < this.user.active_services.length; j++){
@@ -86,16 +91,8 @@ class TariffesManager{
                         if(deactivateConfirm){
                             let xhr = new XMLHttpRequest();
 
-                            xhr.open("PUT", "/admin-menu/my-active-tariffes/" + this.tariffes[i]._id, true);
+                            xhr.open("PUT", window.location.pathname + '/' + this.tariffes[i]._id, true);
                             xhr.setRequestHeader("Content-Type", "application/json");
-
-                            /*xhr.onreadystatechange = function () { 
-                                if(xhr.readyState === 4 && xhr.status === 200) { // request was completed && request was successfull
-                                    console.log('fnsk');
-                                    document.querySelector('#tariffesDisplayBlock').innerHTML = "";
-                                    this.displayMyActiveTariffes();
-                                }
-                            }*/
 
                             xhr.send(JSON.stringify(this.tariffes[i]));
                         }
@@ -118,6 +115,63 @@ class TariffesManager{
         document.querySelector('#tariffesDisplayBlock').innerHTML = "";
         this.tariffes.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
         this.tariffes.reverse();
+    }
+
+    displayTariffesInTable(){
+        for(let i = 0; i < this.tariffes.length; i++){
+            let tableRow = document.createElement('tr');
+
+            let typeTd = document.createElement('td');
+            typeTd.innerText = this.tariffes[i].type;
+            tableRow.appendChild(typeTd);
+
+            let nameTd = document.createElement('td');
+            nameTd.innerText = this.tariffes[i].name;
+            tableRow.appendChild(nameTd);
+
+            let priceTd = document.createElement('td');
+            priceTd.innerText = this.tariffes[i].price;
+            tableRow.appendChild(priceTd)
+
+            let editTd = document.createElement('td');
+            let editBtn = document.createElement('button');
+            editBtn.classList.add('tableBtn');
+            editBtn.classList.add('editBtn');
+            editBtn.addEventListener('click', () => this.#editTariff(i));
+            editBtn.innerText = 'Edit';
+            editTd.appendChild(editBtn);
+            tableRow.appendChild(editTd);
+
+            let deleteTd = document.createElement('td');
+            let deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('tableBtn');
+            deleteBtn.classList.add('deleteBtn');
+            deleteBtn.addEventListener('click', () => this.#deleteTariff(i));
+            deleteBtn.innerText = 'Delete';
+            deleteTd.appendChild(deleteBtn);
+            tableRow.appendChild(deleteTd);
+
+            document.querySelector('table').appendChild(tableRow);   
+        }
+    }
+
+    #editTariff(index) {
+        let tariffId = this.tariffes[index]._id;
+
+        window.location.href = window.location.pathname + `/edit-tariff/${tariffId}`;
+    }
+
+    #deleteTariff(index) {
+        let deleteConfirm = confirm('Are you sure that you want to delete tariff ' + this.tariffes[index].name + "?");
+        if(!deleteConfirm)
+            return;
+
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("DELETE", window.location.pathname + '/' + this.tariffes[index]._id, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.send(JSON.stringify(this.tariffes[index]));
     }
 }
 

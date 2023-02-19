@@ -6,7 +6,7 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const db = require('./models/db-connection');
 const bodyParser = require('body-parser');
-const { checkAuthenticated } = require('./controllers/authentication-checker');
+const { checkAuthenticated } = require('./controllers/middleware-checkers');
 const initializePassport = require('./configs/passport-config');
 const sessionStore = require('./models/sessions');
 
@@ -48,7 +48,7 @@ db.once('open', () => {
     app.use('/download', downloadRouter);
     app.use('/buy', buyRouter);
     
-    app.get('/', checkAuthenticated, () => { return res.redirect('/menu'); });
+    app.get('/', checkAuthenticated, (req, res) => { return res.redirect('/menu'); });
     
     app.listen(port, () => 
         console.log('Server started on port ' + port + '.')); 

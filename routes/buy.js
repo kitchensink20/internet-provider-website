@@ -14,6 +14,11 @@ buyRouter.post('/tariff', async (req, res) => {
             
             res.status(200);
         });
+        if(req.session.passport.user.balance < 0) {
+            await users.blockUser(req.session.passport.user.id);
+            req.session.passport.user.active = false;
+            return res.redirect('/top-up-balance');
+        }
     } catch (error) {
         console.error(error);
     }

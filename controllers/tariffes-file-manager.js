@@ -14,7 +14,7 @@ function updateTariffesFile(){
             fileContent += 'price:  ' + allTariffes[i].price + '₴\n';
         }
 
-        fs.writeFile(file, fileContent, (err) => {
+        fs.writeFile(file, fileContent, (err) => { // fs.writeFile replaces the specified file and content
             if(err) throw err;
             console.log(file + ' updated!');
         });
@@ -28,7 +28,7 @@ function downloadTariffes(res){
     res.setHeader('Content-Type', 'application/octet-stream'); // type of the sent content, octet-stream means binary data
     res.setHeader('Content-Disposition', 'attachment; filename="' + file + '"'); // provides info about how content should be handled by the client, 'attachment' means that the file should be downloaded 
     res.setHeader('Expires', 0); // the time after which response expires
-    res.setHeader('Cache-Control', 'must-revalidate'); // info about caching, 'must-revalidate' checks 'expires' to determaine if the cached response is still valid
+    res.setHeader('Cache-Control', 'must-revalidate'); // info about caching, 'must-revalidate' checks 'expires' to determine if the cached response is still valid
     res.setHeader('Content-Length', fs.statSync(file).size); // the size of the content, statSync - method that returns object that contains information about the specified file, .size returns file size i bytes
     fs.createReadStream(file).pipe(res); //createReadStream(file) is used to create a readable stream of th specified file, pipe() is used to send data from the readable stream to the specified writable stream, in this case to res object
 }

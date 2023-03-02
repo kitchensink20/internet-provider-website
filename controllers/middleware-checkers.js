@@ -22,8 +22,8 @@ function isAdmin(req, res, next){
 function isActive(req, res, next){
     if(req.session.passport.user.active)
         return next();
-
-    res.status(403).send('Access denied.');
+        
+    res.redirect("/menu/top-up-balance");
 }
 
-module.exports = { checkAuthenticated, checkNotAuthenticated, isAdmin }
+module.exports = { checkAuthenticated, checkNotAuthenticated, isAdmin, isActive }

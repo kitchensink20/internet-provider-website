@@ -40,3 +40,9 @@ type:  Internet
 description:
 Get 20GB of Internet in 4 weeks!
 price:  250₴
+_____________________________________________
+name:  Phone+
+type:  Mobile connection
+description:
+Get 150 minutes for calls for 4 weeks!
+price:  250₴

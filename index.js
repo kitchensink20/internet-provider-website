@@ -37,7 +37,7 @@ db.once('open', () => {
     saveUninitialized: false, // to save an unitialized session
     store: sessionStore
     })); // creates a session store on the server, allows to maintain state between HTTP requests
-    app.use(passport.initialize()); // to initialize passport and set up necessary data structures for aithentication
+    app.use(passport.initialize()); // to initialize passport and set up necessary data structures for authentication
     app.use(passport.session()); // to restore user authentication info from a previously established session
     app.use(methodOverride('_method')); // tells the app to look for an HTTP request parameter named '_method' to determine the actual HTTP method to use for the request
     app.use('/login', loginRouter);

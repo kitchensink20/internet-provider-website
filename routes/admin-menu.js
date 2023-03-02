@@ -105,7 +105,21 @@ adminMenuRouter.put('/my-active-tariffes/:tariffId', async (req, res) => {
 
 adminMenuRouter.get('/users-view', (req, res) => {
     res.render(path.join(__dirname, '../views/pages/admin/admin-users-view.ejs'), { user: req.session.passport.user });
-})
+});
+
+adminMenuRouter 
+    .route("/users-view/block/:userId")
+    .put((req, res) => {
+        let chosenUser = req.body;
+        users.blockUser(chosenUser._id);
+    });
+
+adminMenuRouter 
+    .route("/users-view/unblock/:userId")
+    .put((req, res) => {
+        let chosenUser = req.body;
+        users.unblockUser(chosenUser._id);
+    });
 
 adminMenuRouter.get('/tariffes-view', (req, res) => {
     res.render(path.join(__dirname, '../views/pages/admin/admin-tariffes-view.ejs'), { user: req.session.passport.user });

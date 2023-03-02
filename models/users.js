@@ -78,4 +78,19 @@ async function getAllUsers(){
     return allUsers; 
 }
 
-module.exports = { createUser, findUser, addTariffToActives, topUpUserBalance, deleteActiveTariff, getAllUsers }
+async function blockUser(userId) {
+    let result = await User.findByIdAndUpdate(userId, 
+        { active: false },
+        { new: true }).exec();
+    return result;
+}
+
+async function unblockUser(userId) {
+    let result = await User.findByIdAndUpdate(userId, 
+        { active: true },
+        { new: true }).exec();
+    return result;
+}
+
+module.exports = { createUser, findUser, addTariffToActives, topUpUserBalance, 
+    deleteActiveTariff, getAllUsers, blockUser, unblockUser }

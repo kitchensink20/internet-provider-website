@@ -26,23 +26,24 @@ class TariffesManager{
                     .then((response) => response.json())
                     .then((data) => {
                         this.user = data;
-                        if(this.user.balance < this.tariffes[i].price){
-                            alert('You do not need enough money on your balance.');
+                        /*if(this.user.balance < this.tariffes[i].price){
+                            alert('You do not have enough money on your balance.');
                             return;
-                        }
+                        }*/
 
                         let hasThisTariffType = false;
                         for(let j = 0; j < this.user.active_services.length; j++){
                             const tariffId = this.user.active_services[j];
                             let currentTariff;
-                            for(let k = 0; k < this.tariffes.length; k++)
+                            for(let k = 0; k < this.tariffes.length; k++) {
                                 if(tariffId == this.tariffes[k]._id){
                                     currentTariff = this.tariffes[k];
+                                    if(currentTariff.type == this.tariffes[i].type){
+                                        hasThisTariffType = true;
+                                        break;
+                                    }
                                     break;
                                 }
-                            if(currentTariff.type == this.tariffes[i].type){
-                                hasThisTariffType = true;
-                                break;
                             }
                         }
         

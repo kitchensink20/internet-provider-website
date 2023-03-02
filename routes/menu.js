@@ -2,11 +2,11 @@ const express = require('express');
 const menuRouter = express.Router(); 
 const path = require('path'); 
 const users = require('../models/users');
-const { checkAuthenticated } = require('../controllers/middleware-checkers');
+const { checkAuthenticated, isActive } = require('../controllers/middleware-checkers');
 
 menuRouter.use(checkAuthenticated);
 
-menuRouter.get('/', (req, res) => {
+menuRouter.get('/', isActive, (req, res) => {
     if(!req.session.passport.user.admin)
         res.render(path.join(__dirname, '../views/pages/user/user-menu-view.ejs'), { user: req.session.passport.user });
     else 
@@ -15,11 +15,11 @@ menuRouter.get('/', (req, res) => {
 
 menuRouter
     .route('/my-active-tariffes')
-    .get((req, res) => {
+    .get(isActive, (req, res) => {
         res.render(path.join(__dirname, '../views/pages/user/user-my-active-tariffes-view.ejs'), { user: req.session.passport.user });
     });
     
-menuRouter.put('/my-active-tariffes/:tariffId', async (req, res) => {
+menuRouter.put('/my-active-tariffes/:tariffId', isActive, async (req, res) => {
     try{
         const tariff = req.body;
         await users.deleteActiveTariff(req.session.passport.user.id, tariff);
@@ -48,6 +48,11 @@ menuRouter
         await users.topUpUserBalance(userId, plusMoney);
 
         req.session.passport.user.balance += plusMoney;
+
+        if(req.session.passport.user.balance > 0 && !req.session.passport.user.active) {
+            await users.unblockUser(req.session.passport.user.id);
+            req.session.passport.user.active = true;
+        }
 
         return res.redirect('/');
     });

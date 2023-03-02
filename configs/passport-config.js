@@ -10,10 +10,14 @@ function initialize(passport){
             if(!user)
                 return done(null, false, { message: 'No user with that email.' });
         }).then(async () => {
-            if(await bcrypt.compare(_password, user.password)) // bcrypt.compare is an asynchronous func, it uses 'await' to wait for the promise returned by 'compare' func to resolve
+            if(await bcrypt.compare(_password, user.password)) { // bcrypt.compare is an asynchronous func, it uses 'await' to wait for the promise returned by 'compare' func to resolve
+                if(!user.active && user.balance > 0)
+                    return done(null, false, { message: 'Your account has been banned by admin. Please contact support.' });
                 return done(null, user); // as the resolved value is true, it calls the done with null as first argument(no errors in the code) and user object as second
+            }
             else 
                 return done(null, false, { message: 'Password incorrect.' }); // false indicates error authentication
+
         }).catch(error => {
             console.error('Error: ', error);
         });

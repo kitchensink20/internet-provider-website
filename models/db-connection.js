@@ -26,7 +26,7 @@ db.on('error', console.error.bind(console, 'DB connection error: '));
 
 // when the db connection is dicconnected, more methods***
 db.on('disconnected', () => {
-    console.log('The connection to db was stopped.')
+    console.log('The connection to db was stopped.');
 })
 
 module.exports = db;

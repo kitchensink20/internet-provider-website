@@ -37,7 +37,7 @@ async function getTariffById(tariffId){
     return tariff;
 }
 
-function getAllTariffes(){
+async function getAllTariffes(){
     let tariffesList = Tariff.find({}).exec();
     return tariffesList;
 }

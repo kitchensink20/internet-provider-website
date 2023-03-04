@@ -46,8 +46,8 @@ async function createUser(user) {
     }
 }
 
-function findUser(query) {
-    let requestedUser = User.findOne(query).exec();
+async function findUser(query) {
+    let requestedUser = await User.findOne(query).exec();
     return requestedUser;
 }
 
@@ -60,33 +60,33 @@ async function addTariffToActives(userId, tariff){
 }
 
 async function deleteActiveTariff(userId, tariff){
-    let result = await User.findByIdAndUpdate(userId, 
+    const result = await User.findByIdAndUpdate(userId, 
         { $pull: { active_services: tariff._id }},
         { new: true }).exec();
     return result;
 }
 
 async function topUpUserBalance(userId, moneyAmount){
-    let result = await User.findByIdAndUpdate(userId, 
+    const result = await User.findByIdAndUpdate(userId, 
         { $inc: { balance: +moneyAmount }},
         { new: true }).exec();
     return result;
 }
 
 async function getAllUsers(){
-    let allUsers = await User.find({});
+    const allUsers = await User.find({});
     return allUsers; 
 }
 
 async function blockUser(userId) {
-    let result = await User.findByIdAndUpdate(userId, 
+    const blockedUser = await User.findByIdAndUpdate(userId, 
         { active: false },
         { new: true }).exec();
-    return result;
+    return blockedUser;
 }
 
 async function unblockUser(userId) {
-    let result = await User.findByIdAndUpdate(userId, 
+    const result = await User.findByIdAndUpdate(userId, 
         { active: true },
         { new: true }).exec();
     return result;

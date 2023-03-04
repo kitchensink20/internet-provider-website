@@ -7,7 +7,7 @@ const methodOverride = require('method-override');
 const db = require('./models/db-connection');
 const bodyParser = require('body-parser');
 const { checkAuthenticated } = require('./controllers/middleware-checkers');
-const initializePassport = require('./configs/passport-config');
+const initializePassport = require('./models/passport');
 const sessionStore = require('./models/sessions');
 
 //routers

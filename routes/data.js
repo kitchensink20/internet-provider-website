@@ -3,12 +3,13 @@ const dataRouter = express.Router();
 const tariffes = require('../models/tariffes');
 const users = require('../models/users');
 
-dataRouter.get('/tariffes', (req, res) => {
-    tariffes.getAllTariffes().then(allTariffes => {
+dataRouter.get('/tariffes', async (req, res) => {
+    try {
+        let allTariffes = await tariffes.getAllTariffes();
         res.json(allTariffes);
-    }).catch(error => {
-        console.error('Error: ', error);
-    });
+    } catch (error) {
+        console.error("Error: ", error);
+    }
 });
 
 dataRouter.get('/user', (req, res) => {
